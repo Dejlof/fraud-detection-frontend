@@ -1,1 +1,27 @@
-<p>home works!</p>
+<div class="h-screen home-body bg-white flex justify-between items-center">
+    <div class="home-content ">
+        <div class="header flex flex-row mb-4">
+            <h1 class="text-8xl font-bold">Owlet</h1>
+            <img class="w-36 h-24" src="../../assets/images/Owlet logo 1.svg" />
+        </div>
+        <div class="details w-96 space-y-4">
+            <h2 class="text-blue-500 pb-1 font-semibold">
+                Your Advanced 
+                <span class="text-neutral-700">Fraud Monitoring</span>
+                 System
+            </h2>
+            <p class="text-xl font-normal pb-3">
+                Stay ahead of fraudsters by monitoring transactions in real-time, 
+                identifying suspicious patterns, and taking proactive measures to mitigate risks.
+            </p>
+            <div class="flex justify-center items-center">
+                <button class="w-96 h-16 rounded-2xl text-white text-2xl font-normal get-started">
+                    <a [routerLink]="['login']">Get Started</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="home-img">
+        <img class="w-96 h-96" src="../../assets/images/landing-img.png" />
+    </div>
+</div>

@@ -1,0 +1,35 @@
+.home-body{
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.header h1 {
+    color: #022D63;
+    font-family: Poppins;
+}
+
+.details{
+    font-size: 34px;
+    font-family: Poppins;
+    letter-spacing: 0.30px;
+    word-wrap: break-word;
+    width: 388px;
+}
+
+.details p{
+    width: 428px;
+    color: #6C757D;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.20px;
+}
+
+.get-started{
+    font-family: Inter, sans-serif;
+    background-color: #022D63;
+    box-shadow: 0px 4px 12px #B0BEEF;
+}
+
+.get-started:hover{
+    background-color: #001835;
+}
