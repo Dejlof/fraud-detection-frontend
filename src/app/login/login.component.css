@@ -12,3 +12,8 @@
 .submit:hover{
     background-color: #001835;
 }
+
+.login-header h1 {
+    color: #022D63;
+    font-family: Poppins;
+}
