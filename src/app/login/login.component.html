@@ -1,31 +1,42 @@
-<<<<<<< HEAD
 <div class="h-screen login-body bg-white flex justify-between items-center">
     <div class="login-content">
-        <div class="login-header flex flex-row items-center mb-4">
+        <div class="login-header flex justify-center items-center mb-6">
             <h1 class="text-6xl font-bold">Owlet</h1>
             <img class="w-24 h-16" src="../../assets/images/Owlet logo 1.svg" />
         </div>
-        <div class="form-area w-96 space-y-4">
+        <div class="form-area space-y-4">
             <h2 class="text-sky-950 text-3xl font-semibold">
                 Login
             </h2>
-            <p class="text-slate-400 text-lg font-normal pb-2">
+            <p class="pb-2 text-base font-medium">
                 Please login to your account
             </p>
-            <div class="form-inputs flex justify-center items-center">
+            <div class="form-inputs flex justify-start items-center">
                 <form>
                     <label>Username</label><br>
-                    <input type="text" placeholder="Username"  name="username" required><br>
+                    <div class="input-field px-4 flex items-center gap-3 mb-4 mt-2">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Username"  name="username" required class="py-5" />
+                    </div>
+
                     <label>Password</label><br>
-                    <input type="password" placeholder="Password" name="password" required><br>
-                    <div class="password-section flex flex-row justify-between items-center">
-                        <div class="remember-me">
+                    <div class="input-field px-4 flex items-center justify-between mb-1 mt-2">
+                        <div class="flex flex-row items-center gap-3">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="password" placeholder="Password" name="password" required class="py-5" />
+                        </div>
+                        <button><i class="fa-regular fa-eye-slash"></i></button>
+                    </div>
+
+                    <div class="password-section flex flex-row justify-between items-center mb-5">
+                        <div class="remember-me flex flex-row items-center gap-1">
                             <input type="checkbox" name="forgot" value="Forgot"/>
                             <label for="forgot">Remember me</label>
                         </div>
-                        <a href="#" target="_blank">Forgot Password</a>
+                        <a href="#">Forgot Password</a>
                     </div>
-                    <button class="w-96 h-16 rounded-2xl text-white text-2xl font-normal submit">
+
+                    <button class="text-white flex justify-start items-center font-normal submit">
                         <a routerLink='/dashboard'>Login</a>
                     </button>
                 </form>
@@ -34,12 +45,6 @@
         </div>
     </div>
     <div class="home-img">
-        <img class="w-96 h-96" src="../../assets/images/login-img.png" />
+        <img class="" src="../../assets/images/login-img.png" />
     </div>
 </div>
-=======
-<p>login works!</p>
-<button class="w-26 h-8 rounded-2xl text-blue text-2xl font-normal get-started">
-    <a (click)="gotoDashboard()">Log In</a>
-</button>
->>>>>>> updated-dev

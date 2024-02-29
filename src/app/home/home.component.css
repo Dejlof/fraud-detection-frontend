@@ -1,11 +1,17 @@
 .home-body{
-    max-width: 900px;
+    max-width: 1050px;
     margin-inline: auto;
 }
 
 .header h1 {
     color: #022D63;
     font-family: Poppins;
+    font-size: 96px;
+}
+
+.header img{
+    width: 141px; 
+    height: 93.61px;
 }
 
 .details{
@@ -24,14 +30,16 @@
     letter-spacing: 0.20px;
 }
 
-.get-started{
-    text-align: start;
+.get-started a{
     font-family: Inter, sans-serif;
+    font-size: 21px;
+    font-weight: 400;
     background-color: #022D63;
-    padding: 20px;
+    padding: 15px 75px;
     box-shadow: 0px 4px 12px #B0BEEF;
+    border-radius: 14px;
 }
 
-.get-started:hover{
+.get-started a:hover{
     background-color: #001835;
 }
