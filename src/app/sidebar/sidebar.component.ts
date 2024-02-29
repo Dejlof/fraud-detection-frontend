@@ -11,7 +11,7 @@ export class SidebarComponent {
 
 constructor( private router:Router){}
   gotoMainDashboard(){
-    this.router.navigate([''])
+    this.router.navigate(['/dashboard'])
   };
 
   gotoAlert(){

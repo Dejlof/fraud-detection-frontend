@@ -6,9 +6,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
+<<<<<<< HEAD
     {path:"", component:HomeComponent},
     {path:"login", component:LoginComponent},
     {path:"dashboard", component:MainDashboardComponent},
+=======
+    {path: '', component: HomeComponent },
+    {path:'login', component: LoginComponent },
+    {path:'dashboard', component: MainDashboardComponent},
+>>>>>>> updated-dev
     {path:"alert", component:AlertComponent},
     {path:"monitor", component:MonitorComponent}
 ];
