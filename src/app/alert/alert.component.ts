@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 interface Transaction {
   accountNumber: number;
@@ -15,7 +16,7 @@ interface Transaction {
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css'
 })

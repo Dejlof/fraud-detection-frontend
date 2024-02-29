@@ -20,8 +20,15 @@
 
 .position-relative:hover .arrow {
     opacity: 1;
+    color: #022D63;
+}
+
+.position-relative:hover .word {
+    opacity: 1;
+    color: #022D63;
 }
 
 .position-relative:hover {
     font-weight: 600;
+    color: #022D63;
 }

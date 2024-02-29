@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { NavigationComponent } from '../navigation/navigation.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 interface Transaction {
@@ -15,7 +15,7 @@ interface Transaction {
 @Component({
   selector: 'app-main-dashboard',
   standalone: true,
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent],
   templateUrl: './main-dashboard.component.html',
   styleUrl: './main-dashboard.component.css'
 })
