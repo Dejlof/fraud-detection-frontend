@@ -1,0 +1,65 @@
+.login-body{
+    max-width: 1050px;
+    margin-inline: auto;
+    height: 589px;
+}
+
+.login-content{
+    width: 400px;
+}
+
+.form-area h2{
+    color: #022D63;
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: -15px;
+}
+
+.form-area p{
+    color: #969AB8;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+.login-header h1 {
+    color: #022D63;
+    font-family: Poppins;
+}
+
+.form-inputs label{
+    color: #427BFB;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 500;
+}
+
+.input-field{
+    width: 398.01px;
+    height: 80px;
+    background: white;
+    border-radius: 8px;
+    border: 1.60px #E0E2E9 solid;
+    color: #969AB8;
+}
+
+.input-field input{
+    border: none;
+    outline: none;
+}
+
+.submit a{
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    background-color: #022D63;
+    padding: 12px 70px;
+    box-shadow: 0px 4px 12px #B0BEEF;
+    border-radius: 16px;
+}
+
+.submit a:hover{
+    background-color: #001835;
+}
