@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 interface Transaction {
   accountNumber: number;
@@ -14,7 +15,7 @@ interface Transaction {
 @Component({
   selector: 'app-monitor',
   standalone: true,
-  imports: [CommonModule, SidebarComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent],
   templateUrl: './monitor.component.html',
   styleUrl: './monitor.component.css'
 })
