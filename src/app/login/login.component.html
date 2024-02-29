@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="h-screen login-body bg-white flex justify-between items-center">
+    <div class="login-content">
+        <div class="header flex flex-row items-center mb-4">
+            <h1 class="text-6xl font-bold">Owlet</h1>
+            <img class="w-24 h-16" src="../../assets/images/Owlet logo 1.svg" />
+        </div>
+        <div class="form-area w-96 space-y-4">
+            <h2 class="text-blue-500 pb-1 font-semibold">
+                Login
+            </h2>
+            <p class="text-xl font-normal pb-3">
+                Please login to your account
+            </p>
+            <div class="form-inputs flex justify-center items-center">
+                <form>
+                    <label>Username</label><br>
+                    <input type="text" placeholder="Username"  name="username" required><br>
+                    <label>Password</label><br>
+                    <input type="password" placeholder="Password" name="password" required><br>
+                    <div class="password-section flex flex-row justify-between items-center">
+                        <div class="remember-me">
+                            <input type="checkbox" name="forgot" value="Forgot"/>
+                            <label for="forgot">Remember me</label>
+                        </div>
+                        <a href="#" target="_blank">Forgot Password</a>
+                    </div>
+                    <button class="w-96 h-16 rounded-2xl text-white text-2xl font-normal submit">
+                        <a [routerLink]="['dashboard']">Get Started</a>
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="home-img">
+        <img class="w-96 h-96" src="../../assets/images/login-img.png" />
+    </div>
+</div>
