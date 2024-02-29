@@ -1,0 +1,46 @@
+<div id="main-container" id="main-container" class="flex md:flex-row flex-col text-gray-600 min-h-screen">
+    <section id=" side-bar " class="basis-1/5 md:basis-1/4">
+        <app-sidebar></app-sidebar>
+    </section>
+    <section id="data " class="basis-4/5 md:basis-3/4 pt-8 relative ">
+        <div class="all flex ">
+            <div class="all-word basis-1/2 pl-5 ">
+                All({{totData}}) <i class="fa-solid fa-caret-down ml-2 "></i>
+            </div>
+            <div class="all-search basis-1/2 absolute right-20 top-6.5 ">
+                <input type="text " name="price " id="price " class="block w-30 rounded-md border-0 py-1 pl-2 text-gray-400 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-gray-400 sm:text-sm sm:leading-6 " placeholder="Search ">
+            </div>
+        </div>
+
+        <div class="tdata pt-10 ">
+            <table class="table-auto w-11/12 text-center ">
+                <thead>
+                    <tr>
+                        <th>Account Number </th>
+                        <th>Transaction Id</th>
+                        <th>Amount</th>
+                        <th>Comment</th>
+                        <th>Action</th>
+                        <th>Report</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of DATAS ">
+                        <ng-container *ngIf="data.status==='Critical'">
+                            <td>{{data.accountNumber}}</td>
+                            <td>{{data.transactionId}}</td>
+                            <td>{{data.amount}}</td>
+                            <td style="border-left:8px solid red;">System detected high level of Withdrawal</td>
+                            <td>
+                                <button class="bg-gray-200 hover:bg-gray-100 text-purple-500 py-1 px-2.5 rounded-md shadow font-semi-bold " style="font-size:
+                                0.8em;"><i class="fa-solid fa-eye "></i> View Details</button>
+
+                            </td>
+                            <td>Reported to NIBSS</td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
