@@ -3,15 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NavigationComponent } from '../navigation/navigation.component';
+import { Transaction } from '../models/tran-details';
 
-interface Transaction {
-  accountNumber: number;
-  date: string;
-  method: string;
-  transactionId: string;
-  amount: string;
-  status: string;
-  action: string;}
 
 @Component({
   selector: 'app-alert',
@@ -33,18 +26,20 @@ export class AlertComponent {
     for (let i = 1; i <= this.totData; i++) {
       const amount = i * 3500; 
       let status = 'Good'; 
+      let method ='Withdrawal';
       if (amount > 15000 && amount <= 30000) {
         status = 'Monitor';
-       
+        method= 'Transfer';
       } else if (amount > 30000) {
         status = 'Critical';
+        method='Credit';
       }
 
       this.DATAS.push({
         accountNumber: this.MockAccount + i,
         date: 'March ' + (17 - i % 17) + ', 2024',
-        method: 'Withdrawal',
-        transactionId: '00' + (i % 100),
+        method: method,
+        transactionId: (i % 10 + 1010),
         amount: '# ' + amount.toFixed(2), 
         status: status,
         action: 'View'
@@ -52,6 +47,31 @@ export class AlertComponent {
     }
   }
 
+  transaction:Transaction|undefined;
+
+
+  openModal(transaction: Transaction) {
+    this.transaction = transaction;
+    const modal = document.getElementById("crypto-modal");
+    const container = document.getElementById("container");
+    if (modal) {
+      modal.style.display = "flex";
+      if (container) {
+        container.style.filter = "blur(2px)";
+      }
+    }
+  }
+  
+  closeModal(){
+    const modal = document.getElementById("crypto-modal");
+    const container = document.getElementById("container");
+    if (modal) {
+      modal.style.display = "none";
+      if (container) {
+        container.style.filter = "blur(0px)";
+      }
+    }
+  }
 
 
   

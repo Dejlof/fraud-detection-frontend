@@ -23,9 +23,9 @@
                     <div class="input-field px-4 flex items-center justify-between mb-1 mt-2">
                         <div class="flex flex-row items-center gap-3">
                             <i class="fa-solid fa-key"></i>
-                            <input type="password" placeholder="Password" name="password" required class="py-5" />
+                            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" name="password" required class="py-5" />
                         </div>
-                        <button><i class="fa-regular fa-eye-slash"></i></button>
+                        <button (click)="togglePassword()"><i class="fa-regular fa-eye-slash"></i></button>
                     </div>
 
                     <div class="password-section flex flex-row justify-between items-center mb-5">
