@@ -1,0 +1,48 @@
+<app-transaction-nav></app-transaction-nav>
+<img class="w-44 h-16 mx-auto" src="../../assets/images/firstbank-logo.svg" alt="" />
+<div class="transaction-body bg-white flex justify-between items-center">
+    <div class="transaction-header">
+        <div class="flex justify-center items-center mb-5">
+            <h1 class="text-5xl font-bold">Owlet</h1>
+            <img class="w-24 h-12" src="../../assets/images/Owlet logo 1.svg" alt="" />
+        </div>
+        <div class="space-y-4">
+            <h2 class="text-sky-950 text-2xl font-semibold">
+                Transaction Simulation
+            </h2>
+            <div class="flex justify-start items-center">
+                <form>
+                    <label>Enter Beneficiary Acc No</label><br>
+                    <div class="input-div px-4 flex items-center gap-3 mb-3 mt-1">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <input type="text" placeholder="Account Number" name="account-number" required class="py-2 border-none input-container" />
+                    </div>
+
+                    <label>Transaction method</label><br>
+                    <div class="input-div px-4 flex items-center gap-5 mb-3 mt-1">
+                        <i class="fa-solid fa-wallet"></i>
+                        <select name="transaction-method" id="method" required class="py-2 border-none input-container">
+                            <option value="withdrawal">Withdrawal</option>
+                            <option value="credit">Credit</option>
+                            <option value="transfer">Transfer</option>
+                        </select>
+                    </div>
+
+                    <label>Enter Amount</label><br>
+                    <div class="input-div px-4 flex items-center gap-3 mb-5 mt-1">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        <input type="text" placeholder="Amount" name="amount" required class="py-2 focus:border-none focus:outline-none input-container" />
+                    </div>
+
+                    <button class="text-white flex justify-start items-center font-normal submit">
+                        <a routerLink='/dashboard'>Make Payment</a>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="home-img">
+        <img class="" src="../../assets/images/trans-img.png" alt="" />
+    </div>
+</div>

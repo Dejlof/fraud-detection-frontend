@@ -1,0 +1,45 @@
+.transaction-body{
+    max-width: 1050px;
+    margin-inline: auto;
+}
+
+.transaction-header{
+    color: #022D63;
+    font-family: Poppins;
+}
+
+.input-div{
+    width: 350px;
+    height: 55px;
+    border-radius: 8px;
+    border: 1.60px #E0E2E9 solid;
+    color: #969AB8;
+}
+
+input, select{
+    border: none !important;
+    border-color: transparent !important;
+    outline: none !important;
+    outline-style: none !important;
+}
+
+input:focus, select:focus{
+    border: none !important;
+    border-color: transparent !important;
+    outline: none !important;
+    outline-style: none !important;
+}
+
+.submit a{
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    background-color: #022D63;
+    padding: 12px 70px;
+    box-shadow: 0px 4px 12px #B0BEEF;
+    border-radius: 16px;
+}
+
+.submit a:hover{
+    background-color: #001835;
+}
