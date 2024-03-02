@@ -19,9 +19,9 @@
                     </div>
 
                     <label>Transaction method</label><br>
-                    <div class="input-div w-[350] flex items-center justify-between mb-3 mt-1">
-                        <i class="fa-solid fa-wallet p-3"></i>
-                        <select name="transaction-method" id="method" required class="w-full rounded-r-md py-2 border-[#E0E2E9]">
+                    <div class="input-div px-4 flex items-center gap-5 mb-3 mt-1">
+                        <i class="fa-solid fa-wallet"></i>
+                        <select name="transaction-method" id="method" required class="py-2 border-none input-container">
                             <option value="withdrawal">Withdrawal</option>
                             <option value="credit">Credit</option>
                             <option value="transfer">Transfer</option>
@@ -29,12 +29,12 @@
                     </div>
 
                     <label>Enter Amount</label><br>
-                    <div class="input-div w-[350] flex items-center mb-5 mt-1">
-                        <i class="fa-solid fa-money-bill-wave p-3"></i>
-                        <input type="text" placeholder="Amount" name="amount" required class="w-full rounded-r-md py-2 border-[#E0E2E9]" />
+                    <div class="input-div px-4 flex items-center gap-3 mb-5 mt-1">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                        <input type="text" placeholder="Amount" name="amount" required class="py-2 focus:border-none focus:outline-none input-container" />
                     </div>
 
-                    <button class="text-white flex justify-start items-center font-normal submit">
+                    <button class="text-white flex justify-start items-center font-normal submit ">
                         <a routerLink='/dashboard'>Make Payment</a>
                     </button>
                 </form>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="home-img">
-        <img class="" src="../../assets/images/trans-img.png" alt="" />
+    <div class="home-img ">
+        <img class=" " src="../../assets/images/trans-img.png " alt=" " />
     </div>
 </div>

@@ -4,12 +4,14 @@ import { Router } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { Transaction } from '../models/tran-details';
+import { ModalComponent } from '../modal/modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css'
 })
@@ -17,8 +19,14 @@ export class AlertComponent {
 
   MockAccount: number= 1134578901;
   DATAS:Transaction[] = [];
-  currentPage: number = 1;
-  itemsPerPage: number = 5;
+  
+  searchTerm: string = '';
+
+  get filteredData() {
+    return this.DATAS.filter(data =>
+      data.accountNumber.toString().includes(this.searchTerm.toLowerCase())
+    );
+  }
 
  totData:number=20;
 
@@ -62,17 +70,10 @@ export class AlertComponent {
     }
   }
   
-  closeModal(){
-    const modal = document.getElementById("crypto-modal");
-    const container = document.getElementById("container");
-    if (modal) {
-      modal.style.display = "none";
-      if (container) {
-        container.style.filter = "blur(0px)";
-      }
-    }
+  
+
+  getTracker(data:Transaction):number {
+    return data.transactionId
   }
-
-
   
 }
