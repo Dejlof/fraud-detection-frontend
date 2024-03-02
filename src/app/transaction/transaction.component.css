@@ -1,14 +1,14 @@
-.transaction-body{
+.transaction-body {
     max-width: 1050px;
     margin-inline: auto;
 }
 
-.transaction-header{
+.transaction-header {
     color: #022D63;
     font-family: Poppins;
 }
 
-.input-div{
+.input-div {
     width: 350px;
     height: 55px;
     border-radius: 8px;
@@ -16,21 +16,23 @@
     color: #969AB8;
 }
 
-input, select{
+input,
+select {
     border: none !important;
     border-color: transparent !important;
     outline: none !important;
     outline-style: none !important;
 }
 
-input:focus, select:focus{
+input:focus,
+select:focus {
     border: none !important;
     border-color: transparent !important;
     outline: none !important;
     outline-style: none !important;
 }
 
-.submit a{
+.submit a {
     font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -40,6 +42,6 @@ input:focus, select:focus{
     border-radius: 16px;
 }
 
-.submit a:hover{
+.submit a:hover {
     background-color: #001835;
 }

@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { Transaction } from '../models/tran-details';
+import { FormsModule } from '@angular/forms';
+import { ModalComponent } from '../modal/modal.component';
 
 
 @Component({
   selector: 'app-monitor',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, FormsModule, ModalComponent],
   templateUrl: './monitor.component.html',
   styleUrl: './monitor.component.css'
 })
@@ -17,6 +19,15 @@ export class MonitorComponent {
   DATAS:Transaction[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 5;
+
+  searchTerm: string = '';
+
+  get filteredData() {
+    return this.DATAS.filter(data =>
+      data.accountNumber.toString().includes(this.searchTerm.toLowerCase())
+    );
+  }
+ 
 
  totData:number=20;
 
@@ -60,15 +71,8 @@ export class MonitorComponent {
     }
   }
   
-  closeModal(){
-    const modal = document.getElementById("crypto-modal");
-    const container = document.getElementById("container");
-    if (modal) {
-      modal.style.display = "none";
-      if (container) {
-        container.style.filter = "blur(0px)";
-      }
-    }
+ 
+  getTracker(data:Transaction):number {
+    return data.transactionId
   }
-
 }
