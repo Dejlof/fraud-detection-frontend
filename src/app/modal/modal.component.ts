@@ -9,14 +9,13 @@ import { Transaction } from '../models/tran-details';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
-  MockAccount: number= 1134578901;
+ 
   DATAS:Transaction[] = [];
   
   @Input({required:true})
   transaction:Transaction|undefined;
 
 
-  
   closeModal(){
     const modal = document.getElementById("crypto-modal");
    const container = document.getElementById("container");

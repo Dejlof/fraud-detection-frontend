@@ -6,12 +6,13 @@ import { Transaction } from '../models/tran-details';
 import { RouterLink} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
+import { TableHeadingComponent } from '../table-heading/table-heading.component';
 
 
 @Component({
   selector: 'app-main-dashboard',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, RouterLink, FormsModule, ModalComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, RouterLink, FormsModule, ModalComponent, TableHeadingComponent],
   templateUrl: './main-dashboard.component.html',
   styleUrl: './main-dashboard.component.css'
 })
@@ -19,13 +20,13 @@ export class MainDashboardComponent {
 MockAccount: number= 1134578901;
   DATAS:Transaction[] = [];
   searchTerm: string = '';
-
-  get filteredData() {
-    return this.DATAS.filter(data =>
-      data.accountNumber.toString().includes(this.searchTerm.toLowerCase())
-    );
-  }
+  status:string= "Dashboard";
  
+
+  handleFilteredData(filteredData: Transaction[]) {
+    this.DATAS = filteredData;
+  }
+
   
 
  totData:number=20;
