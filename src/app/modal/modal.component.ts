@@ -15,7 +15,7 @@ export class ModalComponent {
   @Input({required:true})
   transaction:Transaction|undefined;
 
-  
+
   closeModal(){
     const modal = document.getElementById("crypto-modal");
    const container = document.getElementById("container");
