@@ -5,29 +5,25 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { Transaction } from '../models/tran-details';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
+import { TableHeadingComponent } from '../table-heading/table-heading.component';
 
 
 @Component({
   selector: 'app-monitor',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, FormsModule, ModalComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, FormsModule, ModalComponent, TableHeadingComponent],
   templateUrl: './monitor.component.html',
   styleUrl: './monitor.component.css'
 })
 export class MonitorComponent {
   MockAccount: number= 1134578901;
   DATAS:Transaction[] = [];
-  currentPage: number = 1;
-  itemsPerPage: number = 5;
-
-  searchTerm: string = '';
-
-  get filteredData() {
-    return this.DATAS.filter(data =>
-      data.accountNumber.toString().includes(this.searchTerm.toLowerCase())
-    );
-  }
+  status:string= "Monitor";
  
+
+  handleFilteredData(filteredData: Transaction[]) {
+    this.DATAS = filteredData;
+  }
 
  totData:number=20;
 

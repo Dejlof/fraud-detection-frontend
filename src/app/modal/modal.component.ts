@@ -16,17 +16,6 @@ export class ModalComponent {
   transaction:Transaction|undefined;
 
 
-  openModal(transaction: Transaction) {
-    this.transaction = transaction;
-    const modal = document.getElementById("crypto-modal");
-    const container = document.getElementById("container");
-    if (modal) {
-      modal.style.display = "flex";
-      if (container) {
-        container.style.filter = "blur(2px)";
-      }
-    }
-  }
   
   closeModal(){
     const modal = document.getElementById("crypto-modal");
