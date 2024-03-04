@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,4 +12,6 @@ import { HomeComponent } from './home/home.component';
 })
 export class AppComponent {
   title = 'fraud-detection-frontend';
+
+ 
 }

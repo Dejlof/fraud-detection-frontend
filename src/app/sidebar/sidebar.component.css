@@ -1,0 +1,34 @@
+#side-bar {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    right: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+}
+
+.position-relative:hover .arrow {
+    opacity: 1;
+    color: #022D63;
+}
+
+.position-relative:hover .word {
+    opacity: 1;
+    color: #022D63;
+}
+
+.position-relative:hover {
+    font-weight: 600;
+    color: #022D63;
+}

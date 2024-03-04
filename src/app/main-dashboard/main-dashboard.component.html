@@ -1,0 +1,50 @@
+<div id="container">
+    <app-navigation></app-navigation>
+    <div id="main-container" id="main-container" class="flex md:flex-row flex-col text-gray-600 min-h-screen">
+        <section id=" side-bar " class="basis-1/5 md:basis-1/4">
+            <app-sidebar></app-sidebar>
+        </section>
+        <section id="data " class="basis-4/5 md:basis-3/4 pt-11 relative ">
+            <app-table-heading [totalData]="totData" [status]="status" (filteredData)=" handleFilteredData($event) "></app-table-heading>
+            <div class="tdata pt-10 ">
+                <table id="tranTable" class="table-auto w-11/12 text-center ">
+                    <thead>
+                        <tr>
+                            <th>Account Number </th>
+                            <th>Date</th>
+                            <th>Method</th>
+                            <th>Transaction Id</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of paginatedData">
+                            <td>{{data.accountNumber}}</td>
+                            <td>{{data.date}}</td>
+                            <td>{{data.method}}</td>
+                            <td>{{data.transactionId}}</td>
+                            <td>{{data.amount}}</td>
+                            <td><button [ngStyle]="{ 'background-color': data.status==='Monitor' ? '#b58900' : data.status==='Critical' ? 'red' : 'green' } " class="bg-green-600 hover:bg-green-400 text-white py-1 px-2.5 rounded-xl shadow " style="font-size:
+                        0.8em; ">
+                            {{data.status}}
+                          </button></td>
+                            <td>
+                                <button (click)="openModal(data)" class="bg-gray-200 hover:bg-gray-100 text-purple-500 py-1 px-2.5 rounded-md shadow font-semi-bold " style="font-size: 0.8em; "><i class="fa-solid fa-eye "></i> View Details</button>
+
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="changePage($event)"></app-pagination>
+            </div>
+
+        </section>
+    </div>
+
+</div>
+@for (item of paginatedData; track getTracker(item)) {
+<app-modal [transaction]="item"></app-modal>
+}
