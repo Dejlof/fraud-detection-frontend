@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of DATAS">
+                        <tr *ngFor="let data of paginatedData">
                             <td>{{data.accountNumber}}</td>
                             <td>{{data.date}}</td>
                             <td>{{data.method}}</td>
@@ -38,12 +38,13 @@
 
                     </tbody>
                 </table>
+                <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="changePage($event)"></app-pagination>
             </div>
 
         </section>
     </div>
 
 </div>
-@for (item of DATAS; track getTracker(item)) {
+@for (item of paginatedData; track getTracker(item)) {
 <app-modal [transaction]="item"></app-modal>
 }

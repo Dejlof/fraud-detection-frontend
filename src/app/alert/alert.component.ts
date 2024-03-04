@@ -7,28 +7,30 @@ import { Transaction } from '../models/tran-details';
 import { ModalComponent } from '../modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { TableHeadingComponent } from '../table-heading/table-heading.component';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule, TableHeadingComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule, TableHeadingComponent, PaginationComponent],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css'
 })
 export class AlertComponent {
-
   MockAccount: number= 1134578901;
   DATAS:Transaction[] = [];
   searchTerm: string = '';
   status:string= "Alert";
- 
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  totData:number=20;
+  totDataCritical:number = 0;
 
+ 
   handleFilteredData(filteredData: Transaction[]) {
     this.DATAS = filteredData;
   }
-
-
 
 
   get filteredData() {
@@ -37,7 +39,7 @@ export class AlertComponent {
     );
   }
 
- totData:number=20;
+ 
 
   constructor(private router:Router) {
     for (let i = 1; i <= this.totData; i++) {
@@ -62,6 +64,9 @@ export class AlertComponent {
         action: 'View'
       });
     }
+
+    this.totDataCritical = this.DATAS.filter(item => item.status === "Critical").length;
+    
   }
 
   transaction:Transaction|undefined;
@@ -79,10 +84,24 @@ export class AlertComponent {
     }
   }
   
-  
 
   getTracker(data:Transaction):number {
     return data.transactionId
+  }
+
+  get totalPages(): number {
+    const criticalData = this.DATAS.filter(item=>item.status === "Critical");
+    return Math.ceil(criticalData.length / this.itemsPerPage);
+  }
+  
+  get paginatedData(): Transaction[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const criticalData = this.DATAS.filter(item=>item.status === "Critical");
+    return criticalData.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+  
+  changePage(page: number) {
+    this.currentPage = page;
   }
   
 }
