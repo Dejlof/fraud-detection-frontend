@@ -1,10 +1,10 @@
-<div id="container">
+<div id="container" class="min-h-screen">
     <app-navigation></app-navigation>
     <div id="main-container" id="main-container" class="flex md:flex-row flex-col text-gray-600 min-h-screen">
         <section id=" side-bar " class="basis-1/5 md:basis-1/4">
             <app-sidebar></app-sidebar>
         </section>
-        <section id="data " class="basis-4/5 md:basis-3/4 pt-11 relative ">
+        <section id="data " class="basis-4/5 md:basis-3/4 pt-11 relative">
             <app-table-heading [totalData]="totData" [status]="status" (filteredData)=" handleFilteredData($event) "></app-table-heading>
             <div class="tdata pt-10 ">
                 <table id="tranTable" class="table-auto w-11/12 text-center ">
@@ -45,6 +45,8 @@
     </div>
 
 </div>
+
+
 @for (item of paginatedData; track getTracker(item)) {
 <app-modal [transaction]="item"></app-modal>
 }

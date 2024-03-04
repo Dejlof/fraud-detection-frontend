@@ -1,8 +1,8 @@
 <div class="left-0 right-0 w-full relative md:w-64 h-full p-4 pt-6 border-r shadow-lg text-sm ">
     <ul>
         <li>
-            <a [routerLink]="['/dashboard']" class="flex items-center pt-4 pb-4 pl-2 position-relative ">
-                <img src="../../assets/dashboard.png " alt=" ">
+            <a [routerLink]="['/dashboard']" routerLinkActive="active" class=" flex items-center pt-4 pb-4 pl-2 position-relative ">
+                <i class="fa-solid fa-chess-board"></i>
                 <span class="text-gray-500 ml-5 word">Dashboard</span>
                 <span class="arrow ">
                     <i class="fa-solid fa-chevron-right "></i>
@@ -10,16 +10,16 @@
             </a>
         </li>
         <li>
-            <a [routerLink]="['/alert']" class="flex items-center pb-4 pl-2 position-relative hover:text[#022D63]">
-                <img src="../../assets/alert.png " alt=" ">
+            <a [routerLink]="[ '/alert']" routerLinkActive="active" class="flex items-center pb-4 pl-2 position-relative hover:text[#022D63] ">
+                <i class="fa-regular fa-bell"></i>
                 <span class="text-gray-500 ml-5 word">Alert</span>
                 <span class="arrow ">
-                    <i class="fa-solid fa-chevron-right hover:text[#022D63]"></i>
+                    <i class="fa-solid fa-chevron-right hover:text[#022D63] "></i>
                 </span>
             </a>
         </li>
         <li>
-            <a [routerLink]="['/monitor']" class="flex items-center pb-4 pl-2 position-relative ">
+            <a [routerLink]="[ '/monitor']" routerLinkActive="active" class="flex items-center pb-4 pl-2 position-relative ">
                 <img src="../../assets/monitor.png " alt=" ">
                 <span class="text-gray-500 ml-5 word">Monitor</span>
                 <span class="arrow ">
@@ -28,8 +28,8 @@
             </a>
         </li>
         <li>
-            <a [routerLink]="['/login']" class="flex items-center pb-4 pl-2 position-relative ">
-                <img src="../../assets/logout.png " alt=" ">
+            <a [routerLink]="[ '/login']" routerLinkActive="active" class="flex items-center pb-4 pl-2 position-relative ">
+                <i class="fa-solid fa-right-to-bracket"></i>
                 <span class="text-gray-500 ml-5 word">Logout</span>
                 <span class="arrow ">
                     <i class="fa-solid fa-chevron-right "></i>
