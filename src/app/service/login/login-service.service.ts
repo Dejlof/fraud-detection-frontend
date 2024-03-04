@@ -13,6 +13,6 @@ export class LoginServiceService {
   }
 
   login(admin: Admin): Observable<any> {
-    return this.http.post('https://localhost:44314/api/Login', admin);
+    return this.http.post('http://localhost:5279/api/Login', admin);
   }
 }

@@ -26,21 +26,21 @@ export class LoginComponent {
 
   onLogin(){
     this.loginService.login(this.loginObj).subscribe(
-      (response:any)=> {
-        if (this.checkLoginSuccess(response)) {
+      (response:any)=>{
+        if (this.isLoginSuccessful(response)) {
           alert("Login Success");
         } else {
           alert("Login Failed");
         }
       },
       (error:any)=>{
-        console.error('Error occurred:', error);
+        console.log('Error occurred:', error);
         alert("An error occurred during login");
       }
     )
   }
 
-  private checkLoginSuccess(response: any): boolean {
+  private isLoginSuccessful(response: any): boolean {
     return response && response.Username === 'super_admin' && response.Password === 'admin@123';
   }
 
