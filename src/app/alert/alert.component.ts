@@ -6,12 +6,13 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { Transaction } from '../models/tran-details';
 import { ModalComponent } from '../modal/modal.component';
 import { FormsModule } from '@angular/forms';
+import { TableHeadingComponent } from '../table-heading/table-heading.component';
 
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule, TableHeadingComponent],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css'
 })
@@ -19,8 +20,16 @@ export class AlertComponent {
 
   MockAccount: number= 1134578901;
   DATAS:Transaction[] = [];
-  
   searchTerm: string = '';
+  status:string= "Alert";
+ 
+
+  handleFilteredData(filteredData: Transaction[]) {
+    this.DATAS = filteredData;
+  }
+
+
+
 
   get filteredData() {
     return this.DATAS.filter(data =>
