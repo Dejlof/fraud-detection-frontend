@@ -11,52 +11,54 @@ import { error } from 'console';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule,],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 
 export class LoginComponent{
   adminLogin: FormGroup;
-  loginObj: Admin = {Username: '', Password: ''};
+  loginObj: Admin = {Email: '', PasswordHash: ''};
   hidePassword: boolean = true;
-
   constructor(private router:Router, private loginService:LoginServiceService){
     this.loginObj = this.loginObj;
     this.adminLogin = new FormGroup({
-      username: new FormControl("",[Validators.required]),
+      email: new FormControl("",[Validators.required, Validators.email]),
       password: new FormControl("",[Validators.required]),
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     if(this.adminLogin.valid){
-      this.loginObj.Username = this.adminLogin.controls['username'].value;
-      this.loginObj.Password = this.adminLogin.controls['password'].value;
+      this.loginObj.Email = this.adminLogin.controls['email'].value;
+      this.loginObj.PasswordHash = this.adminLogin.controls['password'].value;
+      
       this.loginService.login(this.loginObj).subscribe(
-        (response: any)=>{
-          if (this.isLoginSuccessful(response)) {
+        (response)=>{
+          console.log("Response: ", response);
+          const token = response;
+          sessionStorage.setItem('token', token);
+          const adminToken = sessionStorage.getItem('token');
+          if(adminToken){
             this.gotoDashboard();
-          } 
-          else {
-            console.log('Invalid username or password');
-            alert('Invalid username or password');
           }
+          else {
+            this.gotoLogin();
+          }
+          
         },
-        (error:any)=>{
-          console.log('Error occurred:', error);
-          alert("An error occurred during login");
+        (error)=>{
+          if(error.status === 401){
+            console.log("Unauthorized");
+          }
+          else {
+            console.log("An error occurred");
+          }
         }
       )
-    } 
-    else {
-      console.log('Please fill all the fields');
+    }else {
       alert('Please fill all the fields');
     }
-  }
-
-  private isLoginSuccessful(response: any): boolean {
-    return this.loginObj.Username === 'super_admin' && this.loginObj.Password === 'admin@123';
   }
 
   togglePassword(){
@@ -66,5 +68,9 @@ export class LoginComponent{
   gotoDashboard(){
     this.router.navigate(['/dashboard'])
   };
-  
+
+  gotoLogin(){
+    this.router.navigate(['/login'])
+  };
+
 }

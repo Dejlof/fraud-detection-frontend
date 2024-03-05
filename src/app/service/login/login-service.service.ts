@@ -14,6 +14,6 @@ export class LoginServiceService {
   }
 
   login(admin: Admin): Observable<any> {
-    return this.http.post('http://localhost:5279/api/Login', admin);
+      return this.http.post('http://localhost:5156/api/Admin/login', admin, {responseType: 'text'});
   }
 }
