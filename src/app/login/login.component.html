@@ -12,33 +12,33 @@
                 Please login to your account
             </p>
             <div class="form-inputs flex justify-start items-center">
-                <form action="#">
+                <form [formGroup]="adminLogin">
                     <label>Username</label><br>
-                    <div class="input-field px-4 flex items-center gap-3 mb-4 mt-2">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Username" [(ngModel)]="loginObj.Username" name="Username" required class="py-5" />
+                    <div class="input-field w-[350] flex items-center mb-3 mt-1">
+                        <i class="fa-solid fa-user p-3"></i>
+                        <input type="text" placeholder="Username" formControlName="username" name="username" class="w-full rounded-r-md py-2 border-[#E0E2E9]" />
                     </div>
 
                     <label>Password</label><br>
-                    <div class="input-field px-4 flex items-center justify-between mb-1 mt-2">
-                        <div class="flex flex-row items-center gap-3">
-                            <i class="fa-solid fa-key"></i>
-                            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" [(ngModel)]="loginObj.Password" name="Password" required class="py-5" />
+                    <div class="input-field w-[350] flex items-center mb-3 mt-1">
+                        <i class="fa-solid fa-key p-3"></i>
+                        <div class="flex flex-row items-around gap-3 w-full rounded-r-md py-2 border-[#E0E2E9]">
+                            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" formControlName="password" name="password" class="w-full"  />
+                            <button (click)="togglePassword()"><i class="fa-regular fa-eye-slash"></i></button>
                         </div>
-                        <button (click)="togglePassword()"><i class="fa-regular fa-eye-slash"></i></button>
+                        
                     </div>
 
-                    <div class="password-section flex flex-row justify-between items-center mb-5">
+                    <!-- <div class="password-section flex flex-row justify-between items-center mb-5">
                         <div class="remember-me flex flex-row items-center gap-1">
                             <input type="checkbox" name="forgot" value="Forgot" />
                             <label for="forgot">Remember me</label>
                         </div>
                         <a href="#">Forgot Password</a>
-                    </div>
+                    </div> -->
 
-                    <button class="text-white flex justify-start items-center font-normal submit" (click)="onLogin()">
-                        <a>Login</a>
-                        <!-- routerLink='/dashboard' -->
+                    <button class="text-white flex justify-start items-center font-normal submit" (click)="onSubmit()">
+                        Login
                     </button>
                 </form>
 
