@@ -13,7 +13,7 @@
             </p>
             <div class="form-inputs flex justify-start items-center">
                 <form [formGroup]="adminLogin" (submit)="onSubmit()">
-                    <label>Username</label><br>
+                    <label>Email</label><br>
                     <div class="input-field w-[350] flex items-center mb-3 mt-1">
                         <i class="fa-solid fa-user p-3"></i>
                         <input type="email" placeholder="Email" formControlName="email" name="email" class="w-full rounded-r-md py-2 border-[#E0E2E9]" />
@@ -22,12 +22,12 @@
                     <label>Password</label><br>
                     <div class="input-field w-[350] flex items-center mb-3 mt-1">
                         
-                        <div class="flex flex-row items-around gap-3 w-full rounded-r-md py-2 border-[#E0E2E9]">
+                        <!-- <div class="flex flex-row items-center gap-3 w-full rounded-r-md border-[#E0E2E9]"> -->
                             <i class="fa-solid fa-key p-3"></i>
-                            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" formControlName="password" name="password" class="w-full"  />
-                            
-                        </div>
-                        <button (click)="togglePassword()"><i class="fa-regular fa-eye-slash"></i></button>
+                            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" formControlName="password" name="password" class="w-3/4 rounded-r-md py-2 border-[#E0E2E9]"  />
+                            <button (click)="togglePassword()"><i class="fa-regular fa-eye-slash pl-4"></i></button>
+                        
+                        
                     </div>
 
                     <!-- <div class="password-section flex flex-row justify-between items-center mb-5">
