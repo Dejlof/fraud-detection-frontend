@@ -16,14 +16,14 @@
                     <label>Username</label><br>
                     <div class="input-field px-4 flex items-center gap-3 mb-4 mt-2">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Username" name="username" required class="py-5" />
+                        <input type="text" placeholder="Username" name="email" required class="py-5" [(ngModel)]="loginObj.email" />
                     </div>
 
                     <label>Password</label><br>
                     <div class="input-field px-4 flex items-center justify-between mb-1 mt-2">
                         <div class="flex flex-row items-center gap-3">
                             <i class="fa-solid fa-key"></i>
-                            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" name="password" required class="py-5" />
+                            <input [type]="hidePassword ? 'password' : 'text'" placeholder="Password" name="passwordHash" required class="py-5" [(ngModel)]="loginObj.passwordHash" />
                         </div>
                         <button (click)="togglePassword()"><i class="fa-regular fa-eye-slash"></i></button>
                     </div>
@@ -36,8 +36,8 @@
                         <a href="#">Forgot Password</a>
                     </div>
 
-                    <button class="text-white flex justify-start items-center font-normal submit">
-                        <a routerLink='/dashboard'>Login</a>
+                    <button class="text-[#022d63] flex justify-start items-center font-normal submit" (click)="onLogin()">
+                        Login
                     </button>
                 </form>
 
