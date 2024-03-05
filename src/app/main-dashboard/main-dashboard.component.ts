@@ -7,27 +7,28 @@ import { RouterLink} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
 import { TableHeadingComponent } from '../table-heading/table-heading.component';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 
 @Component({
   selector: 'app-main-dashboard',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, RouterLink, FormsModule, ModalComponent, TableHeadingComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, RouterLink, FormsModule, ModalComponent, TableHeadingComponent, PaginationComponent],
   templateUrl: './main-dashboard.component.html',
   styleUrl: './main-dashboard.component.css'
 })
-export class MainDashboardComponent {
+export class MainDashboardComponent   {
 MockAccount: number= 1134578901;
   DATAS:Transaction[] = [];
   searchTerm: string = '';
   status:string= "Dashboard";
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
  
 
   handleFilteredData(filteredData: Transaction[]) {
     this.DATAS = filteredData;
   }
-
-  
 
  totData:number=20;
  
@@ -73,10 +74,22 @@ openModal(transaction: Transaction) {
   }
 }
 
-
-
 getTracker(data:Transaction):number {
   return data.transactionId
+}
+
+
+get totalPages(): number {
+  return Math.ceil(this.DATAS.length / this.itemsPerPage);
+}
+
+get paginatedData(): Transaction[] {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  return this.DATAS.slice(startIndex, startIndex + this.itemsPerPage);
+}
+
+changePage(page: number) {
+  this.currentPage = page;
 }
 
 

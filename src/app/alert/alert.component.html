@@ -5,7 +5,7 @@
             <app-sidebar></app-sidebar>
         </section>
         <section id="data " class="basis-4/5 md:basis-3/4 pt-11 relative ">
-            <app-table-heading [totalData]="totData" [status]="status" (filteredData)=" handleFilteredData($event) "></app-table-heading>
+            <app-table-heading [totalData]="totDataCritical" [status]="status" (filteredData)=" handleFilteredData($event) "></app-table-heading>
             <div class="tdata pt-10 ">
                 <table class="table-auto w-11/12 text-center ">
                     <thead>
@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let data of DATAS">
+                        <tr *ngFor="let data of paginatedData">
                             <ng-container *ngIf="data.status==='Critical'">
                                 <td>{{data.accountNumber}}</td>
                                 <td>{{data.transactionId}}</td>
@@ -34,10 +34,15 @@
                         </tr>
                     </tbody>
                 </table>
+
             </div>
+            <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="changePage($event)"></app-pagination>
         </section>
+
     </div>
+
 </div>
-@for (item of DATAS; track getTracker(item)) {
+@for (item of paginatedData; track getTracker(item)) {
 <app-modal [transaction]="item"></app-modal>
+
 }
