@@ -1,8 +1,10 @@
  export interface Transaction {
+    id: number;
+    country: string;
+    timestamp: string;
+    amount: number;
     accountNumber: number;
-    date: string;
-    method: string;
-    transactionId: number;
-    amount: string;
-    status: string;
-    action: string;}
+    balance: number;
+    status:number;
+    destinationAccountNumber:number;
+    transaction_id: number;}

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
 import { TableHeadingComponent } from '../table-heading/table-heading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { TransactionDetailsService } from '../service/transaction-details.service';
 
 
 @Component({
@@ -17,44 +18,29 @@ import { PaginationComponent } from '../pagination/pagination.component';
   templateUrl: './main-dashboard.component.html',
   styleUrl: './main-dashboard.component.css'
 })
-export class MainDashboardComponent   {
-MockAccount: number= 1134578901;
-  DATAS:Transaction[] = [];
+export class MainDashboardComponent implements OnInit   {
+  transactions:Transaction[] = [];
   searchTerm: string = '';
   status:string= "Dashboard";
   currentPage: number = 1;
   itemsPerPage: number = 10;
+ totData:number = 20;
  
 
-  handleFilteredData(filteredData: Transaction[]) {
-    this.DATAS = filteredData;
+  handleFilteredData(filteredTransactions: Transaction[]) {
+    this.transactions = filteredTransactions;
   }
 
- totData:number=20;
  
-  constructor() {
-    for (let i = 1; i <= this.totData; i++) {
-      const amount = i * 3500; 
-      let status = 'Good'; 
-      let method ='Withdrawal';
-      if (amount > 15000 && amount <= 30000) {
-        status = 'Monitor';
-        method= 'Transfer';
-      } else if (amount > 30000) {
-        status = 'Critical';
-        method='Credit';
-      }
+ 
+  constructor(private transactionDetailsService:TransactionDetailsService) {
+    
+  }
 
-      this.DATAS.push({
-        accountNumber: this.MockAccount + i,
-        date: 'March ' + (17 - i % 17) + ', 2024',
-        method: method,
-        transactionId: (i % 10 + 1010),
-        amount: '# ' + amount.toFixed(2), 
-        status: status,
-        action: 'View'
-      });
-    };
+  ngOnInit() {
+    this.transactionDetailsService.getTransactions().subscribe((transactions) => {
+      this.transactions = transactions;
+    });
   }
 
 
@@ -75,17 +61,17 @@ openModal(transaction: Transaction) {
 }
 
 getTracker(data:Transaction):number {
-  return data.transactionId
+  return data.id
 }
 
 
 get totalPages(): number {
-  return Math.ceil(this.DATAS.length / this.itemsPerPage);
+  return Math.ceil(this.transactions.length / this.itemsPerPage);
 }
 
-get paginatedData(): Transaction[] {
+get paginatedTransactions(): Transaction[] {
   const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-  return this.DATAS.slice(startIndex, startIndex + this.itemsPerPage);
+  return this.transactions.slice(startIndex, startIndex + this.itemsPerPage);
 }
 
 changePage(page: number) {

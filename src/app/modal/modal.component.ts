@@ -10,7 +10,7 @@ import { Transaction } from '../models/tran-details';
 })
 export class ModalComponent {
  
-  DATAS:Transaction[] = [];
+  transactions:Transaction[] = [];
   
   @Input({required:true})
   transaction:Transaction|undefined;
