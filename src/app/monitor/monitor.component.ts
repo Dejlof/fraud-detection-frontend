@@ -39,17 +39,19 @@ export class MonitorComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true; 
-    this.transactionDetailsService.getTransactions().subscribe(
-      (transactions) => {
-        this.transactions = transactions;
-        this.totDataMonitor = this.transactions.filter(item=>item.status === 2).length;
-        this.loading = false; 
-      },
-      (error) => {
-        console.error('Error fetching transactions:', error);
-        this.loading = false; 
-      }
-    );
+    setTimeout(() => {
+      this.transactionDetailsService.getTransactions().subscribe(
+        (transactions) => {
+          this.transactions = transactions;
+          this.totDataMonitor = transactions.filter(item=>item.status === 2).length;
+          this.loading = false; 
+        },
+        (error) => {
+          console.error('Error fetching transactions:', error);
+          this.loading = false; 
+        }
+      );
+    }, 10000); 
   }
   
 

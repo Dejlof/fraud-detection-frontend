@@ -41,17 +41,19 @@ export class MainDashboardComponent implements OnInit   {
 
   ngOnInit() {
     this.loading = true; 
-    this.transactionDetailsService.getTransactions().subscribe(
-      (transactions) => {
-        this.transactions = transactions;
-        this.totData = transactions.length;
-        this.loading = false; 
-      },
-      (error) => {
-        console.error('Error fetching transactions:', error);
-        this.loading = false; 
-      }
-    );
+    setTimeout(() => {
+      this.transactionDetailsService.getTransactions().subscribe(
+        (transactions) => {
+          this.transactions = transactions;
+          this.totData = transactions.length;
+          this.loading = false; 
+        },
+        (error) => {
+          console.error('Error fetching transactions:', error);
+          this.loading = false; 
+        }
+      );
+    }, 10000); 
   }
   
 
