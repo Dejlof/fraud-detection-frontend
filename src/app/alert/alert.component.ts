@@ -25,7 +25,7 @@ export class AlertComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 10;
   totData:number=20;
-  totDataCritical:number = 10;
+  totDataCritical:number =  0
 
   handleFilteredData(filteredTransactions: Transaction[]) {
     this.transactions = filteredTransactions;
@@ -40,6 +40,7 @@ export class AlertComponent implements OnInit {
   ngOnInit() {
     this.transactionDetailsService.getTransactions().subscribe((transactions) => {
       this.transactions = transactions;
+      this.totDataCritical=this.transactions.filter(item=> item.status === 1).length;;
     });
   }
 
@@ -58,24 +59,45 @@ export class AlertComponent implements OnInit {
     }
   }
   
+  closeModal(){
+    const modal = document.getElementById("crypto-modal");
+   const container = document.getElementById("container");
+    if (modal) {
+      modal.style.display = "none";
+      if (container) {
+        container.style.filter = "blur(0px)";
+      }
+    }
+  }
+  
 
   getTracker(data:Transaction):number {
     return data.id
   }
 
   get totalPages(): number {
-    const criticalData = this.transactions.filter(item=>item.status === 3);
+    const criticalData = this.transactions.filter(item=>item.status === 1);
     return Math.ceil(criticalData.length / this.itemsPerPage);
   }
   
   get paginatedTransactions(): Transaction[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const criticalData = this.transactions.filter(item=>item.status === 3);
+    const criticalData = this.transactions.filter(item=> item.status === 1);
     return criticalData.slice(startIndex, startIndex + this.itemsPerPage);
   }
   
   changePage(page: number) {
     this.currentPage = page;
   }
-  
+  getReportMessage(amount: number): string {
+    if (amount >= 0 && amount < 1000) {
+      return 'Reported to Customer Service';
+    } else if (amount >= 1000 && amount < 3000) {
+      return 'Reported Internal Fraud Team';
+    } else if (amount >= 3000) {
+      return 'Reported to NIBSS';
+    } else {
+      return ''; 
+    }
+  }
 }

@@ -33,7 +33,7 @@ export class TableHeadingComponent implements OnInit {
 
   filterData() {
     const filtered = this.transactions.filter(data =>
-      data.accountNumber.toString().toLowerCase().includes(this.searchTerm)
+      data.transaction_id.toString().toLowerCase().includes(this.searchTerm)
     );
     this.filteredData.emit(filtered);
   }

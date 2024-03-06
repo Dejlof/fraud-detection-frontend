@@ -24,7 +24,7 @@ export class MainDashboardComponent implements OnInit   {
   status:string= "Dashboard";
   currentPage: number = 1;
   itemsPerPage: number = 10;
- totData:number = 20;
+ totData:number = 0;
  
 
   handleFilteredData(filteredTransactions: Transaction[]) {
@@ -40,6 +40,7 @@ export class MainDashboardComponent implements OnInit   {
   ngOnInit() {
     this.transactionDetailsService.getTransactions().subscribe((transactions) => {
       this.transactions = transactions;
+      this.totData= transactions.length;
     });
   }
 
@@ -78,7 +79,30 @@ changePage(page: number) {
   this.currentPage = page;
 }
 
+getButtonClass(transaction: Transaction): string {
+  if (transaction.status === 3) {
+    return 'bg-yellow-600 hover:bg-yellow-400';
+  } else if (transaction.status === 1) {
+    return 'bg-red-600 hover:bg-red-400';
+  } else {
+    return 'bg-green-600 hover:bg-green-400';
+  }
+}
+
+
+closeModal(){
+  const modal = document.getElementById("crypto-modal");
+ const container = document.getElementById("container");
+  if (modal) {
+    modal.style.display = "none";
+    if (container) {
+      container.style.filter = "blur(0px)";
+    }
+  }
+}
 
 }
+
+
 
 

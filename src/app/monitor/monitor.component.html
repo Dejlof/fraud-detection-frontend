@@ -8,7 +8,7 @@
             <app-table-heading [totalData]="totDataMonitor" [status]="status" (filteredData)=" handleFilteredData($event) "></app-table-heading>
 
             <div class="tdata pt-10">
-                <table class="table-auto w-11/12 text-center ">
+                <table class="table-auto w-11/12 text-center md:mb-0 mb-20">
                     <thead>
                         <tr>
                             <th>Account Number </th>
@@ -24,7 +24,7 @@
                             <ng-container *ngIf="transaction.status=== 2">
                                 <td>{{transaction.accountNumber}}</td>
                                 <td>{{transaction.transaction_id}}</td>
-                                <td>{{transaction.amount.toFixed(2)}}</td>
+                                <td>#{{transaction.amount.toFixed(2)}}</td>
                                 <td style="border-left:8px solid #dfae1a; ">System detected high level of Withdrawal</td>
                                 <td>
                                     <button (click)="openModal(transaction) " class="bg-gray-200 hover:bg-gray-100 text-purple-500 py-1 px-2.5 rounded-md shadow font-semi-bold " style="font-size: 0.8em; "><i class="fa-solid fa-eye "></i> View Details</button>
@@ -39,6 +39,86 @@
         </section>
     </div>
 </div>
-@for (item of paginatedTransactions; track getTracker(item)) {
-<app-modal [transaction]="item "></app-modal>
-}
+<!-- Main modal -->
+<div id="crypto-modal" tabindex="-1 " aria-hidden="true " class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full ">
+    <div class="relative w-full max-w-xl max-h-full ">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-2xl shadow dark:bg-white p-6 pb-20 ">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between py-2 md:py-3 px-4 md:px-5 rounded-t dark:border-gray-600 ">
+                <h3 class="text-lg font-semibold text-gray-900 ">
+                    Transaction Details
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white " (click)="closeModal() ">
+            <svg class="w-3 h-3 " aria-hidden="true " xmlns="http://www.w3.org/2000/svg " fill="none " viewBox="0 0 14 14 ">
+                <path stroke="currentColor" stroke-linecap="round " stroke-linejoin="round" stroke-width="2 " d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6 "/>
+            </svg>
+            <span class="sr-only ">Close modal</span>
+        </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 ">
+
+                <ul class="space-y-3 ">
+                    <li>
+                        <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">ACCOUNT NUMBER</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.accountNumber}}</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">DATE</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.timestamp}}</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">METHOD</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.country}}</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">TRANSACTION ID</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.transaction_id}}</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">AMOUNT</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">#{{transaction?.amount?.toFixed(2)}}</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">STATUS</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">  {{ transaction?.status === 3 ? 'Good' : transaction?.status === 1 ? 'Critical' : 'Monitor' }}</span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">TO</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.destinationAccountNumber}} </span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex text-sm mb-3 items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
+                            <span class="basis-2/5 text-[#6C757D] ">BANK</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">Ample Bank</span>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="absolute right-10 bottom-10 border border-gray-950 px-3 py-2 hover:bg-gray-950 hover:text-white "> <i class="fa-solid fa-arrow-down pr-3 "></i>Download Details</button>
+        </div>
+    </div>
+</div>

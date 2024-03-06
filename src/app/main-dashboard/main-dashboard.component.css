@@ -19,3 +19,9 @@ td {
     font-size: 0.8em;
     font-family: "Poppins", sans-serif;
 }
+
+#crypto-modal {
+    color: black;
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+}

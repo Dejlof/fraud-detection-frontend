@@ -22,7 +22,7 @@ export class MonitorComponent implements OnInit {
   status:string= "Monitor";
   currentPage: number = 1;
   itemsPerPage: number = 10;
-  totDataMonitor: number = 10;
+  totDataMonitor: number = 0;
   
 
   handleFilteredData(filteredTransactions: Transaction[]) {
@@ -37,6 +37,7 @@ export class MonitorComponent implements OnInit {
   ngOnInit() {
     this.transactionDetailsService.getTransactions().subscribe((transactions) => {
       this.transactions = transactions;
+      this.totDataMonitor=this.transactions.filter(item=>item.status === 2).length;
     });
   }
 
@@ -51,6 +52,18 @@ export class MonitorComponent implements OnInit {
       modal.style.display = "flex";
       if (container) {
         container.style.filter = "blur(2px)";
+      }
+    }
+  }
+
+
+  closeModal(){
+    const modal = document.getElementById("crypto-modal");
+   const container = document.getElementById("container");
+    if (modal) {
+      modal.style.display = "none";
+      if (container) {
+        container.style.filter = "blur(0px)";
       }
     }
   }
