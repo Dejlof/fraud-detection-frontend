@@ -20,7 +20,7 @@ export class LoginComponent{
   adminLogin: FormGroup;
   loginObj: Admin = {Email: '', PasswordHash: ''};
   hidePassword: boolean = true;
-  
+
   constructor(private router:Router, private loginService:LoginServiceService){
     this.loginObj = this.loginObj;
     this.adminLogin = new FormGroup({
