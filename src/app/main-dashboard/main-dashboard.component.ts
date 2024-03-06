@@ -9,12 +9,13 @@ import { ModalComponent } from '../modal/modal.component';
 import { TableHeadingComponent } from '../table-heading/table-heading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { TransactionDetailsService } from '../service/transaction-details.service';
+import { LoadingstateComponent } from '../loadingstate/loadingstate.component';
 
 
 @Component({
   selector: 'app-main-dashboard',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, RouterLink, FormsModule, ModalComponent, TableHeadingComponent, PaginationComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, RouterLink, FormsModule, ModalComponent, TableHeadingComponent, PaginationComponent, LoadingstateComponent],
   templateUrl: './main-dashboard.component.html',
   styleUrl: './main-dashboard.component.css'
 })
@@ -25,6 +26,7 @@ export class MainDashboardComponent implements OnInit   {
   currentPage: number = 1;
   itemsPerPage: number = 10;
  totData:number = 0;
+ loading: boolean = true;
  
 
   handleFilteredData(filteredTransactions: Transaction[]) {
@@ -38,11 +40,20 @@ export class MainDashboardComponent implements OnInit   {
   }
 
   ngOnInit() {
-    this.transactionDetailsService.getTransactions().subscribe((transactions) => {
-      this.transactions = transactions;
-      this.totData= transactions.length;
-    });
+    this.loading = true; 
+    this.transactionDetailsService.getTransactions().subscribe(
+      (transactions) => {
+        this.transactions = transactions;
+        this.totData = transactions.length;
+        this.loading = false; 
+      },
+      (error) => {
+        console.error('Error fetching transactions:', error);
+        this.loading = false; 
+      }
+    );
   }
+  
 
 
  

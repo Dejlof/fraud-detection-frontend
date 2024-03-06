@@ -1,4 +1,4 @@
-<div id="sideBar" class="left-0 right-0 w-full relative md:w-64 h-full p-4 pt-6 border-r shadow-lg text-sm  md:block show">
+<div id="sideBar" class="left-0 right-0 w-full relative md:w-64 h-full p-4 pt-6 border-r shadow-lg text-sm  md:block">
     <ul>
         <li>
             <a [routerLink]="['/dashboard']" routerLinkActive="active" class=" flex items-center pt-4 pb-4 pl-2 position-relative ">
@@ -28,13 +28,15 @@
             </a>
         </li>
         <li>
-            <a [routerLink]="[ '/login']" routerLinkActive="active" class="flex items-center pb-4 pl-2 position-relative ">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                <span class="text-gray-500 ml-5 word">Logout</span>
-                <span class="arrow ">
-                    <i class="fa-solid fa-chevron-right "></i>
-                </span>
-            </a>
+            <button (click)="onLogOut()">
+                <a  routerLinkActive="active" class="flex items-center pb-4 pl-2 position-relative ">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span class="text-gray-500 ml-5 word">Logout</span>
+                    <span class="arrow ">
+                        <i class="fa-solid fa-chevron-right "></i>
+                    </span>
+                </a>
+            </button>
         </li>
     </ul>
 </div>

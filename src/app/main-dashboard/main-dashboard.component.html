@@ -7,7 +7,7 @@
         <section id="data " class="basis-4/5 md:basis-3/4 pt-11 relative">
             <app-table-heading [totalData]="totData" [status]="status" (filteredData)=" handleFilteredData($event) "></app-table-heading>
             <div class="tdata pt-10">
-                <table id="tranTable" class="table-auto w-11/12 text-center md:mb-0 mb-20 md:block flex align-middle justify-center">
+                <table id="tranTable" class="table-auto w-11/12 text-center md:mb-0 mb-20">
                     <thead>
                         <tr>
                             <th>Account Number </th>
@@ -48,6 +48,8 @@
     </div>
 
 </div>
+<app-loadingstate *ngIf="loading">
+</app-loadingstate>
 
 
 <!-- Main modal -->

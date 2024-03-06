@@ -9,12 +9,13 @@ import { FormsModule } from '@angular/forms';
 import { TableHeadingComponent } from '../table-heading/table-heading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { TransactionDetailsService } from '../service/transaction-details.service';
+import { LoadingstateComponent } from '../loadingstate/loadingstate.component';
 
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule, TableHeadingComponent, PaginationComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule, TableHeadingComponent, PaginationComponent, LoadingstateComponent],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css'
 })
@@ -24,24 +25,33 @@ export class AlertComponent implements OnInit {
   status:string= "Alert";
   currentPage: number = 1;
   itemsPerPage: number = 10;
-  totData:number=20;
   totDataCritical:number =  0
+  loading: boolean = true;
+ 
 
   handleFilteredData(filteredTransactions: Transaction[]) {
     this.transactions = filteredTransactions;
   }
 
  
-  constructor(private transactionDetailsService:TransactionDetailsService,
-    private router:Router) {
+ 
+  constructor(private transactionDetailsService:TransactionDetailsService) {
     
   }
 
   ngOnInit() {
-    this.transactionDetailsService.getTransactions().subscribe((transactions) => {
-      this.transactions = transactions;
-      this.totDataCritical=this.transactions.filter(item=> item.status === 1).length;;
-    });
+    this.loading = true; 
+    this.transactionDetailsService.getTransactions().subscribe(
+      (transactions) => {
+        this.transactions = transactions;
+        this.totDataCritical = this.transactions.filter(item=>item.status === 1).length;
+        this.loading = false; 
+      },
+      (error) => {
+        console.error('Error fetching transactions:', error);
+        this.loading = false; 
+      }
+    );
   }
 
   transaction:Transaction|undefined;

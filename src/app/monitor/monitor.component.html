@@ -29,16 +29,19 @@
                                 <td>
                                     <button (click)="openModal(transaction) " class="bg-gray-200 hover:bg-gray-100 text-purple-500 py-1 px-2.5 rounded-md shadow font-semi-bold " style="font-size: 0.8em; "><i class="fa-solid fa-eye "></i> View Details</button>
                                 </td>
-                                <td>Reported to NIBSS</td>
+                                <td>Monitoring</td>
                             </ng-container>
                         </tr>
                     </tbody>
                 </table>
+
                 <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="changePage($event)"></app-pagination>
             </div>
         </section>
     </div>
 </div>
+<app-loadingstate *ngIf="loading">
+</app-loadingstate>
 <!-- Main modal -->
 <div id="crypto-modal" tabindex="-1 " aria-hidden="true " class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full ">
     <div class="relative w-full max-w-xl max-h-full ">

@@ -8,12 +8,13 @@ import { ModalComponent } from '../modal/modal.component';
 import { TableHeadingComponent } from '../table-heading/table-heading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { TransactionDetailsService } from '../service/transaction-details.service';
+import { LoadingstateComponent } from '../loadingstate/loadingstate.component';
 
 
 @Component({
   selector: 'app-monitor',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, FormsModule, ModalComponent, TableHeadingComponent, PaginationComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, FormsModule, ModalComponent, TableHeadingComponent, PaginationComponent, LoadingstateComponent],
   templateUrl: './monitor.component.html',
   styleUrl: './monitor.component.css'
 })
@@ -23,23 +24,34 @@ export class MonitorComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 10;
   totDataMonitor: number = 0;
-  
+  loading: boolean = true;
+ 
 
   handleFilteredData(filteredTransactions: Transaction[]) {
     this.transactions = filteredTransactions;
   }
 
  
+ 
   constructor(private transactionDetailsService:TransactionDetailsService) {
     
   }
 
   ngOnInit() {
-    this.transactionDetailsService.getTransactions().subscribe((transactions) => {
-      this.transactions = transactions;
-      this.totDataMonitor=this.transactions.filter(item=>item.status === 2).length;
-    });
+    this.loading = true; 
+    this.transactionDetailsService.getTransactions().subscribe(
+      (transactions) => {
+        this.transactions = transactions;
+        this.totDataMonitor = this.transactions.filter(item=>item.status === 2).length;
+        this.loading = false; 
+      },
+      (error) => {
+        console.error('Error fetching transactions:', error);
+        this.loading = false; 
+      }
+    );
   }
+  
 
   transaction:Transaction|undefined;
 
