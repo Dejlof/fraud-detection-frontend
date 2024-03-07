@@ -24,7 +24,7 @@
                             <ng-container *ngIf="transaction.status===2 ">
                                 <td>{{transaction.accountNumber}}</td>
                                 <td>{{transaction.transaction_id}}</td>
-                                <td>#{{transaction.amount.toFixed(2)}}</td>
+                                <td>&#8358;{{transaction.amount.toFixed(2)}}</td>
                                 <td>System detected high level of Withdrawal</td>
                                 <td>
                                     <button (click)="openModal(transaction) " class="bg-gray-200 hover:bg-gray-100 text-purple-500 py-1 px-2.5 rounded-md shadow font-semi-bold " style="font-size: 0.8em; "><i class="fa-solid fa-eye "></i> View Details</button>

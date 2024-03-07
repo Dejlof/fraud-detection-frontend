@@ -16,8 +16,8 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrl: './transaction.component.css',
 })
 export class TransactionComponent {
-  destinationAccountNumber:number = 0;
-  amount:number = 0;
+  destinationAccountNumber:number = 0.00;
+  amount:number = 0.00;
   country:string = "";
 
 
@@ -37,29 +37,36 @@ export class TransactionComponent {
     console.log(id, timestamp, balance, transaction_id, accountNumber, status, this.amount, this.destinationAccountNumber, this.country);
     
   
-    // this.transactionService.createTransaction(id, timestamp, balance, transaction_id, accountNumber, status, this.destinationAccountNumber, this.amount, this.country)
-    //     .subscribe(
-    //         response => {
-    //             this.router.navigateByUrl("transaction-successful");
-    //             console.log(response);
-    //             this.cdRef.detectChanges();
-              
+     this.transactionService.createTransaction(id, timestamp, balance, transaction_id, accountNumber, status, this.destinationAccountNumber, this.amount, this.country)
+        .subscribe(
+           response => {
+                this.router.navigateByUrl("transaction-successful");
+              console.log(response);
+                this.cdRef.detectChanges()     
 
-    //         },
-    //         error => {
-    //             console.error('Error creating transaction:', error);
-    //             this.router.navigateByUrl("transaction-failed");
-    //             this.cdRef.detectChanges(); 
-    //         }
-    //     );
+         },
+            error => {
+               console.error('Error creating transaction:', error);
+               this.router.navigateByUrl("transaction-failed");
+                this.cdRef.detectChanges(); 
+            }
+        );
 }
 
 generateRandomId(): number {
-  return 1996;
+
+  const min = 5000;
+    const max = Number.MAX_SAFE_INTEGER; 
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 getCurrentTimestamp(): string{
-  return "2025-10-04"
+   const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month starts from 0
+    const day = String(currentDate.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
 }
 
 getCurrentBalance(): number {
@@ -67,7 +74,9 @@ getCurrentBalance(): number {
 }
 
 generateRandomTransactionId(): number {
- return 1697399020;
+  const min = 1000000000; 
+    const max = 9999999999;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 getAccountNumber(): number {

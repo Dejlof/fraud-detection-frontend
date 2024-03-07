@@ -35,14 +35,14 @@ export class TransactionDetailsService {
   createTransaction(id:number, timestamp:string, balance:number, accountNumber:number, status:number, transaction_id:number, destinationAccountNumber: number, amount: number, country: string): Observable<any> {
     const headers = this.getHeadersWithToken();
     const body = {
-      destinationAccountNumber: destinationAccountNumber,
-      amount: amount,
-      country: country,
       id:id,
+      country: country,
       timestamp:timestamp,
+      amount: amount,
       balance:balance,
       accountNumber:accountNumber,
       status:status,
+      destinationAccountNumber: destinationAccountNumber,
       transaction_id:transaction_id
     };
     return this.http.post<Transaction>(`${BASE_URL}/Transactions`, body, { headers });

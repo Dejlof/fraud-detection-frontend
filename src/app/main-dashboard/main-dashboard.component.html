@@ -25,7 +25,7 @@
                             <td>{{transaction.timestamp}}</td>
                             <td>{{transaction.country}}</td>
                             <td>{{transaction.transaction_id}}</td>
-                            <td>#{{transaction.amount.toFixed(2)}}</td>
+                            <td>&#8358;{{transaction.amount.toFixed(2)}}</td>
                             <td>
                                 <button [ngClass]="getButtonClass(transaction)" class="py-1 px-2.5 rounded-xl shadow text-white" style="font-size: 0.8em;">
                                   {{ transaction.status === 3 ? 'Good' : transaction.status === 1 ? 'Critical' : 'Monitor' }}
