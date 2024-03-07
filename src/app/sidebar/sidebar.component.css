@@ -18,17 +18,28 @@
     -o-transition: opacity 0.3s ease;
 }
 
-.position-relative:hover .arrow {
+.active {
+    font-weight: bold;
+}
+
+.active .arrow {
     opacity: 1;
     color: #022D63;
 }
 
-.position-relative:hover .word {
-    opacity: 1;
+.active .word {
     color: #022D63;
 }
 
-.position-relative:hover {
-    font-weight: 600;
+.active .logo {
     color: #022D63;
+}
+
+.fa {
+    font-size: 40px;
+    height: 40px;
+}
+
+.show {
+    display: none;
 }

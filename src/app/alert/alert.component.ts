@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -8,65 +8,52 @@ import { ModalComponent } from '../modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { TableHeadingComponent } from '../table-heading/table-heading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { TransactionDetailsService } from '../service/transaction-details.service';
+import { LoadingstateComponent } from '../loadingstate/loadingstate.component';
 
 
 @Component({
   selector: 'app-alert',
   standalone: true,
-  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule, TableHeadingComponent, PaginationComponent],
+  imports: [CommonModule, SidebarComponent, NavigationComponent, ModalComponent, FormsModule, TableHeadingComponent, PaginationComponent, LoadingstateComponent],
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.css'
 })
-export class AlertComponent {
-  MockAccount: number= 1134578901;
-  DATAS:Transaction[] = [];
+export class AlertComponent implements OnInit {
+ transactions:Transaction[] = [];
   searchTerm: string = '';
   status:string= "Alert";
   currentPage: number = 1;
   itemsPerPage: number = 10;
-  totData:number=20;
-  totDataCritical:number = 0;
-
+  totDataCritical:number =  0
+  loading: boolean = true;
  
-  handleFilteredData(filteredData: Transaction[]) {
-    this.DATAS = filteredData;
-  }
 
-
-  get filteredData() {
-    return this.DATAS.filter(data =>
-      data.accountNumber.toString().includes(this.searchTerm.toLowerCase())
-    );
+  handleFilteredData(filteredTransactions: Transaction[]) {
+    this.transactions = filteredTransactions;
   }
 
  
-
-  constructor(private router:Router) {
-    for (let i = 1; i <= this.totData; i++) {
-      const amount = i * 3500; 
-      let status = 'Good'; 
-      let method ='Withdrawal';
-      if (amount > 15000 && amount <= 30000) {
-        status = 'Monitor';
-        method= 'Transfer';
-      } else if (amount > 30000) {
-        status = 'Critical';
-        method='Credit';
-      }
-
-      this.DATAS.push({
-        accountNumber: this.MockAccount + i,
-        date: 'March ' + (17 - i % 17) + ', 2024',
-        method: method,
-        transactionId: (i % 10 + 1010),
-        amount: '# ' + amount.toFixed(2), 
-        status: status,
-        action: 'View'
-      });
-    }
-
-    this.totDataCritical = this.DATAS.filter(item => item.status === "Critical").length;
+ 
+  constructor(private transactionDetailsService:TransactionDetailsService) {
     
+  }
+
+  ngOnInit() {
+    this.loading = true; 
+    setTimeout(() => {
+      this.transactionDetailsService.getTransactions().subscribe(
+        (transactions) => {
+          this.transactions = transactions;
+          this.totDataCritical = transactions.filter(item=>item.status === 1).length;
+          this.loading = false; 
+        },
+        (error) => {
+          console.error('Error fetching transactions:', error);
+          this.loading = false; 
+        }
+      );
+    }, 10000); 
   }
 
   transaction:Transaction|undefined;
@@ -84,24 +71,45 @@ export class AlertComponent {
     }
   }
   
+  closeModal(){
+    const modal = document.getElementById("crypto-modal");
+   const container = document.getElementById("container");
+    if (modal) {
+      modal.style.display = "none";
+      if (container) {
+        container.style.filter = "blur(0px)";
+      }
+    }
+  }
+  
 
   getTracker(data:Transaction):number {
-    return data.transactionId
+    return data.id
   }
 
   get totalPages(): number {
-    const criticalData = this.DATAS.filter(item=>item.status === "Critical");
+    const criticalData = this.transactions.filter(item=>item.status === 1);
     return Math.ceil(criticalData.length / this.itemsPerPage);
   }
   
-  get paginatedData(): Transaction[] {
+  get paginatedTransactions(): Transaction[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const criticalData = this.DATAS.filter(item=>item.status === "Critical");
+    const criticalData = this.transactions.filter(item=> item.status === 1);
     return criticalData.slice(startIndex, startIndex + this.itemsPerPage);
   }
   
   changePage(page: number) {
     this.currentPage = page;
   }
-  
+  getReportMessage(amount: number): string {
+    if (amount >= 0 && amount < 1000) {
+      return 'Reported to Customer Service';
+    } else if (amount >= 1000 && amount < 3000) {
+      return 'Reported Internal Fraud Team';
+    } else if (amount >= 3000) {
+      return 'Reported to NIBSS';
+    } else {
+      return ''; 
+    }
+  }
 }

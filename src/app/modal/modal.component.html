@@ -29,42 +29,42 @@
                     <li>
                         <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
                             <span class="basis-2/5 text-[#6C757D] ">DATE</span>
-                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.date}}</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.timestamp}}</span>
 
                         </a>
                     </li>
                     <li>
                         <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
                             <span class="basis-2/5 text-[#6C757D] ">METHOD</span>
-                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.method}}</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.country}}</span>
 
                         </a>
                     </li>
                     <li>
                         <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
                             <span class="basis-2/5 text-[#6C757D] ">TRANSACTION ID</span>
-                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.transactionId}}</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.transaction_id}}</span>
 
                         </a>
                     </li>
                     <li>
                         <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
                             <span class="basis-2/5 text-[#6C757D] ">AMOUNT</span>
-                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.amount}}</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">#{{transaction?.amount}}</span>
 
                         </a>
                     </li>
                     <li>
                         <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
                             <span class="basis-2/5 text-[#6C757D] ">STATUS</span>
-                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.status}}</span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">  {{ transaction?.status === 3 ? 'Good' : transaction?.status === 1 ? 'Critical' : 'Monitor' }}</span>
 
                         </a>
                     </li>
                     <li>
                         <a class="flex text-sm items-center p-3 font-semi-bold bg-[#F2F2F2] rounded-md ">
                             <span class="basis-2/5 text-[#6C757D] ">TO</span>
-                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">3456889900 </span>
+                            <span class="basis-3/5 ms-3 whitespace-nowrap text-[#343A40] ">{{transaction?.destinationAccountNumber}} </span>
 
                         </a>
                     </li>

@@ -9,6 +9,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
-  
+  toggleButton(){
+    const getSideBar = document.getElementById("sideBar");
+   getSideBar?.classList.toggle('.show')
+  }
 
 }
