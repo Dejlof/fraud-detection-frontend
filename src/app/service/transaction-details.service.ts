@@ -32,6 +32,21 @@ export class TransactionDetailsService {
       headers: this.getHeadersWithToken()
     });
   }
+  createTransaction(id:number, timestamp:string, balance:number, accountNumber:number, status:number, transaction_id:number, destinationAccountNumber: number, amount: number, country: string): Observable<any> {
+    const headers = this.getHeadersWithToken();
+    const body = {
+      destinationAccountNumber: destinationAccountNumber,
+      amount: amount,
+      country: country,
+      id:id,
+      timestamp:timestamp,
+      balance:balance,
+      accountNumber:accountNumber,
+      status:status,
+      transaction_id:transaction_id
+    };
+    return this.http.post<Transaction>(`${BASE_URL}/Transactions`, body, { headers });
+  }
 
   getTransactionById(transactionId: number): Observable<Transaction> {
     return this.http.get<Transaction>(`${BASE_URL}/Transactions/${transactionId}`, {

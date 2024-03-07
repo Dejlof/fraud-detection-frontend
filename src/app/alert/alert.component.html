@@ -11,25 +11,25 @@
                 <table class="table-auto w-11/12 text-center md:mb-0 mb-20">
                     <thead>
                         <tr>
-                            <th>Account Number </th>
+                            <th style="border-left:8px solid red;">Account Number </th>
                             <th>Transaction Id</th>
                             <th>Amount</th>
                             <th>Comment</th>
                             <th>Action</th>
-                            <th>Report</th>
+                            <th style="border-right:8px solid red;">Report</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let transaction of paginatedTransactions">
                             <ng-container *ngIf="transaction.status === 1">
-                                <td>{{transaction.accountNumber}}</td>
+                                <td style="border-left:8px solid red; ">{{transaction.accountNumber}}</td>
                                 <td>{{transaction.transaction_id}}</td>
                                 <td>#{{transaction.amount.toFixed(2)}}</td>
-                                <td style="border-left:8px solid red; ">System detected high level of Withdrawal</td>
+                                <td>System detected high level of Withdrawal</td>
                                 <td>
                                     <button (click)="openModal(transaction) " class="bg-gray-200 hover:bg-gray-100 text-purple-500 py-1 px-2.5 rounded-md shadow font-semi-bold " style="font-size: 0.8em; "><i class="fa-solid fa-eye "></i> View Details</button>
                                 </td>
-                                <td>{{getReportMessage(transaction.amount) }}</td>
+                                <td style="border-right:8px solid red;">{{getReportMessage(transaction.amount) }}</td>
                             </ng-container>
                         </tr>
                     </tbody>

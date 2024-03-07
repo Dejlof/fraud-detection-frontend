@@ -94,11 +94,12 @@ changePage(page: number) {
 
 getButtonClass(transaction: Transaction): string {
   if (transaction.status === 3) {
-    return 'bg-yellow-600 hover:bg-yellow-400';
+    return 'bg-green-600 hover:bg-green-400';
   } else if (transaction.status === 1) {
     return 'bg-red-600 hover:bg-red-400';
   } else {
-    return 'bg-green-600 hover:bg-green-400';
+ 
+    return 'bg-yellow-600 hover:bg-yellow-400';
   }
 }
 
