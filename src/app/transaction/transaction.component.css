@@ -31,7 +31,7 @@ select:focus {
     outline-style: none !important;
 }
 
-.submit a {
+button {
     font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -41,6 +41,6 @@ select:focus {
     border-radius: 16px;
 }
 
-.submit a:hover {
+button:hover {
     background-color: #001835;
 }

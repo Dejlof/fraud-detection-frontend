@@ -37,20 +37,18 @@
 }
 
 .input-field{
-    width: 398.01px;
-    height: 80px;
-    background: white;
+    width: 350px;
     border-radius: 8px;
     border: 1.60px #E0E2E9 solid;
     color: #969AB8;
 }
 
-.input-field input{
+/* .input-field input{
     border: none;
     outline: none;
-}
+} */
 
-.submit a{
+.submit{
     font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -60,6 +58,6 @@
     border-radius: 16px;
 }
 
-.submit a:hover{
+.submit:hover{
     background-color: #001835;
 }

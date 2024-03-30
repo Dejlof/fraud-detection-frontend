@@ -2,3 +2,7 @@ nav {
     font-family: "Poppins", sans-serif;
     font-style: normal;
 }
+
+.show {
+    display: none;
+}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -9,5 +9,12 @@ import { RouterLink, RouterModule } from '@angular/router';
 })
 export class SidebarComponent {
   
+  constructor(private router:Router){
 
+  }
+
+  onLogOut(){
+      sessionStorage.removeItem('token');
+      this.router.navigate(['/login']);
+  }
 }
